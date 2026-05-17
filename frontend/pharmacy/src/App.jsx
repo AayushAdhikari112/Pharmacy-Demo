@@ -9,7 +9,7 @@ function App() {
 
   return (
     <>
-      <h1>Pharmacy Management System</h1>
+      <h1>Pharmacy Management System heling to deeveloe phaycya</h1>
     </>
   )
 }
