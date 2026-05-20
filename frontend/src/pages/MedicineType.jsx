@@ -1,29 +1,33 @@
 import DashboardLayout from "../layouts/DashboardLayout";
 
-function Customers() {
-  const customers = [
+function MedicineType() {
+  const medicineTypes = [
     {
-      name: "Rohan Sharma",
-      age: 24,
-      phone: "9800000001",
-      gender: "Male",
-      date: "18 May 2026",
+      name: "Tablet",
+      description:
+        "Solid oral medicine",
+      status: "Active",
     },
 
     {
-      name: "Aarav Singh",
-      age: 31,
-      phone: "9800000002",
-      gender: "Male",
-      date: "17 May 2026",
+      name: "Capsule",
+      description:
+        "Gel-based medicine",
+      status: "Active",
     },
 
     {
-      name: "Priya Patel",
-      age: 27,
-      phone: "9800000003",
-      gender: "Female",
-      date: "16 May 2026",
+      name: "Syrup",
+      description:
+        "Liquid medicine",
+      status: "Inactive",
+    },
+
+    {
+      name: "Injection",
+      description:
+        "Injectable medicine",
+      status: "Active",
     },
   ];
 
@@ -50,7 +54,7 @@ function Customers() {
                 marginBottom: "8px",
               }}
             >
-              Customers
+              Medicine Type
             </h1>
 
             <p
@@ -58,20 +62,29 @@ function Customers() {
                 color: "#64748b",
               }}
             >
-              Manage pharmacy customers
+              Manage medicine categories
             </p>
           </div>
 
-          <a
-            href="/add-customer"
+          <div
             style={{
-              textDecoration: "none",
+              display: "flex",
+              gap: "15px",
+              flexWrap: "wrap",
             }}
           >
-            <button style={addButton}>
-              + Add Customer
+            <button style={importBtn}>
+              Import
             </button>
-          </a>
+
+            <button style={exportBtn}>
+              Export
+            </button>
+
+            <button style={addBtn}>
+              + Add Type
+            </button>
+          </div>
         </div>
 
         {/* SEARCH + TIME */}
@@ -89,7 +102,7 @@ function Customers() {
           <div style={searchContainer}>
             <input
               type="text"
-              placeholder="Search customer..."
+              placeholder="Search medicine type..."
               style={searchInput}
             />
           </div>
@@ -124,62 +137,58 @@ function Customers() {
                 </th>
 
                 <th style={head}>
-                  Age
+                  Description
                 </th>
 
                 <th style={head}>
-                  Phone
+                  Status
                 </th>
 
                 <th style={head}>
-                  Gender
-                </th>
-
-                <th style={head}>
-                  Visit Date
-                </th>
-
-                <th style={head}>
-                  Actions
+                  Action
                 </th>
               </tr>
             </thead>
 
             <tbody>
-              {customers.map(
-                (
-                  customer,
-                  index
-                ) => (
+              {medicineTypes.map(
+                (item, index) => (
                   <tr key={index}>
                     <td style={data}>
-                      {
-                        customer.name
-                      }
+                      {item.name}
                     </td>
 
                     <td style={data}>
                       {
-                        customer.age
+                        item.description
                       }
                     </td>
 
                     <td style={data}>
-                      {
-                        customer.phone
-                      }
-                    </td>
+                      <span
+                        style={{
+                          padding:
+                            "8px 14px",
+                          borderRadius:
+                            "30px",
+                          background:
+                            item.status ===
+                            "Active"
+                              ? "#dcfce7"
+                              : "#fee2e2",
 
-                    <td style={data}>
-                      {
-                        customer.gender
-                      }
-                    </td>
+                          color:
+                            item.status ===
+                            "Active"
+                              ? "#166534"
+                              : "#991b1b",
 
-                    <td style={data}>
-                      {
-                        customer.date
-                      }
+                          fontWeight:
+                            "600",
+                        }}
+                      >
+                        {item.status}
+                      </span>
                     </td>
 
                     <td style={data}>
@@ -192,7 +201,7 @@ function Customers() {
                       >
                         <button
                           style={
-                            editButton
+                            editBtn
                           }
                         >
                           Edit
@@ -200,18 +209,10 @@ function Customers() {
 
                         <button
                           style={
-                            deleteButton
+                            deleteBtn
                           }
                         >
                           Delete
-                        </button>
-
-                        <button
-                          style={
-                            exportButton
-                          }
-                        >
-                          Export
                         </button>
                       </div>
                     </td>
@@ -275,17 +276,37 @@ const data = {
     "1px solid #e2e8f0",
 };
 
-const addButton = {
+const addBtn = {
   background: "#2563eb",
   color: "white",
   border: "none",
-  padding: "14px 22px",
+  padding: "12px 20px",
   borderRadius: "12px",
   cursor: "pointer",
   fontWeight: "600",
 };
 
-const editButton = {
+const importBtn = {
+  background: "#0f172a",
+  color: "white",
+  border: "none",
+  padding: "12px 20px",
+  borderRadius: "12px",
+  cursor: "pointer",
+  fontWeight: "600",
+};
+
+const exportBtn = {
+  background: "#10b981",
+  color: "white",
+  border: "none",
+  padding: "12px 20px",
+  borderRadius: "12px",
+  cursor: "pointer",
+  fontWeight: "600",
+};
+
+const editBtn = {
   background: "#3b82f6",
   color: "white",
   border: "none",
@@ -294,7 +315,7 @@ const editButton = {
   cursor: "pointer",
 };
 
-const deleteButton = {
+const deleteBtn = {
   background: "#ef4444",
   color: "white",
   border: "none",
@@ -303,13 +324,4 @@ const deleteButton = {
   cursor: "pointer",
 };
 
-const exportButton = {
-  background: "#10b981",
-  color: "white",
-  border: "none",
-  padding: "8px 14px",
-  borderRadius: "8px",
-  cursor: "pointer",
-};
-
-export default Customers;
+export default MedicineType;

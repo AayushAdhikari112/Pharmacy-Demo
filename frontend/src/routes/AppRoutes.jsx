@@ -1,33 +1,218 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+
+/* AUTH */
 
 import Login from "../pages/Login";
+
+/* DASHBOARD */
+
 import Dashboard from "../pages/Dashboard";
-import Medicines from "../pages/Medicines";
-import Billing from "../pages/Billing";
+
+/* PRODUCTS */
+
+import Product from "../pages/Product";
+
+import PrescriptionLabel from "../pages/PrescriptionLabel";
+
+import CreateLabel from "../pages/CreateLabel";
+
+import Requisition from "../pages/Requisition";
+
+/* PURCHASE */
+
+import Purchase from "../pages/Purchase";
+
+/* SALES */
+
+import PointOfSales from "../pages/PointOfSales";
+
+import CreateInvoice from "../pages/CreateInvoice";
+
+import Invoice from "../pages/Invoice";
+
+import SalesList from "../pages/SalesList";
+
+/* FINANCE */
+
+import Finance from "../pages/Finance";
+
+import Transactions from "../pages/Transactions";
+
+import PendingPayments from "../pages/PendingPayments";
+
+import ExpenseSummary from "../pages/ExpenseSummary";
+
+/* CUSTOMERS */
+
 import Customers from "../pages/Customers";
-import Inventory from "../pages/Inventory";
-import Reports from "../pages/Reports";
+
+import AddCustomer from "../pages/AddCustomer";
+
+/* MEDICINE */
+
+import MedicineType from "../pages/MedicineType";
+
+import Dosage from "../pages/Dosage";
+
+/* OTHER */
+
+import ActivityLog from "../pages/ActivityLog";
+
+import Database from "../pages/Database";
+
 import Settings from "../pages/Settings";
 
 function AppRoutes() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
+        {/* LOGIN */}
 
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route
+          path="/"
+          element={<Login />}
+        />
 
-        <Route path="/medicines" element={<Medicines />} />
+        {/* DASHBOARD */}
 
-        <Route path="/billing" element={<Billing />} />
+        <Route
+          path="/dashboard"
+          element={<Dashboard />}
+        />
 
-        <Route path="/customers" element={<Customers />} />
+        {/* PRODUCTS */}
 
-        <Route path="/inventory" element={<Inventory />} />
+        <Route
+          path="/product"
+          element={<Product />}
+        />
 
-        <Route path="/reports" element={<Reports />} />
+        <Route
+          path="/prescription-label"
+          element={
+            <PrescriptionLabel />
+          }
+        />
 
-        <Route path="/settings" element={<Settings />} />
+        <Route
+          path="/create-label"
+          element={<CreateLabel />}
+        />
+
+        <Route
+          path="/requisition"
+          element={<Requisition />}
+        />
+
+        {/* PURCHASE */}
+
+        <Route
+          path="/purchase"
+          element={<Purchase />}
+        />
+
+        {/* SALES */}
+
+        <Route
+          path="/point-of-sales"
+          element={
+            <PointOfSales />
+          }
+        />
+
+        <Route
+          path="/create-invoice"
+          element={
+            <CreateInvoice />
+          }
+        />
+
+        <Route
+          path="/invoice"
+          element={<Invoice />}
+        />
+
+        <Route
+          path="/sales-list"
+          element={<SalesList />}
+        />
+
+        {/* FINANCE */}
+
+        <Route
+          path="/finance"
+          element={<Finance />}
+        />
+
+        <Route
+          path="/transactions"
+          element={<Transactions />}
+        />
+
+        <Route
+          path="/pending-payments"
+          element={
+            <PendingPayments />
+          }
+        />
+
+        <Route
+          path="/expense-summary"
+          element={
+            <ExpenseSummary />
+          }
+        />
+
+        {/* CUSTOMERS */}
+
+        <Route
+          path="/customers"
+          element={<Customers />}
+        />
+
+        <Route
+          path="/add-customer"
+          element={
+            <AddCustomer />
+          }
+        />
+
+        {/* MEDICINE */}
+
+        <Route
+          path="/medicine-type"
+          element={
+            <MedicineType />
+          }
+        />
+
+        <Route
+          path="/dosage"
+          element={<Dosage />}
+        />
+
+        {/* OTHER */}
+
+        <Route
+          path="/activity-log"
+          element={
+            <ActivityLog />
+          }
+        />
+
+        <Route
+          path="/database"
+          element={<Database />}
+        />
+
+        <Route
+          path="/settings"
+          element={<Settings />}
+        />
       </Routes>
     </BrowserRouter>
   );

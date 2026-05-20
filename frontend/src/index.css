@@ -1,10 +1,23 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial;
 }
 
 body {
-    background: #f3f4f6;
+  background: #f4f7fb;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  opacity: 0.9;
 }

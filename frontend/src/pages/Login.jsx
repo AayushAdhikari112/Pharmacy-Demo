@@ -3,50 +3,45 @@ import { useNavigate } from "react-router-dom";
 function Login() {
   const navigate = useNavigate();
 
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    navigate("/dashboard");
+  };
+
   return (
     <div
       style={{
         height: "100vh",
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        background:
+          "linear-gradient(135deg,#0f172a,#2563eb)",
       }}
     >
       <div
         style={{
-          background: "linear-gradient(135deg,#0f172a,#2563eb)",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          color: "white",
-          flexDirection: "column",
+          width: "400px",
+          padding: "40px",
+          borderRadius: "20px",
+          background:
+            "rgba(255,255,255,0.1)",
+          backdropFilter:
+            "blur(20px)",
         }}
       >
         <h1
           style={{
-            fontSize: "60px",
+            color: "white",
+            marginBottom: "30px",
+            textAlign: "center",
           }}
         >
-          PharmaSys
+          Pharmacy Login
         </h1>
 
-        <p>Smart Pharmacy Management</p>
-      </div>
-
-      <div
-        style={{
-          background: "white",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <div
-          style={{
-            width: "400px",
-          }}
-        >
-          <h1>Login</h1>
-
+        <form onSubmit={handleLogin}>
           <input
             type="email"
             placeholder="Email"
@@ -60,12 +55,12 @@ function Login() {
           />
 
           <button
-            onClick={() => navigate("/dashboard")}
+            type="submit"
             style={buttonStyle}
           >
             Login
           </button>
-        </div>
+        </form>
       </div>
     </div>
   );
@@ -73,20 +68,20 @@ function Login() {
 
 const inputStyle = {
   width: "100%",
-  padding: "15px",
-  marginTop: "20px",
+  padding: "14px",
+  marginBottom: "20px",
   borderRadius: "10px",
-  border: "1px solid #ccc",
+  border: "none",
 };
 
 const buttonStyle = {
   width: "100%",
-  padding: "15px",
-  marginTop: "20px",
-  background: "#2563eb",
-  color: "white",
+  padding: "14px",
   border: "none",
   borderRadius: "10px",
+  background: "#2563eb",
+  color: "white",
+  fontSize: "16px",
 };
 
 export default Login;

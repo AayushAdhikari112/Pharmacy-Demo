@@ -1,29 +1,32 @@
 import DashboardLayout from "../layouts/DashboardLayout";
 
-function Customers() {
-  const customers = [
+function Dosage() {
+  const dosageData = [
     {
-      name: "Rohan Sharma",
-      age: 24,
-      phone: "9800000001",
-      gender: "Male",
-      date: "18 May 2026",
+      name: "1 Tablet",
+      frequency: "Twice Daily",
+      timing: "After Meal",
+      description:
+        "Fever medicine dosage",
+      status: "Active",
     },
 
     {
-      name: "Aarav Singh",
-      age: 31,
-      phone: "9800000002",
-      gender: "Male",
-      date: "17 May 2026",
+      name: "5ml Syrup",
+      frequency: "Once Daily",
+      timing: "Before Meal",
+      description:
+        "Cough syrup dosage",
+      status: "Active",
     },
 
     {
-      name: "Priya Patel",
-      age: 27,
-      phone: "9800000003",
-      gender: "Female",
-      date: "16 May 2026",
+      name: "Injection",
+      frequency: "Weekly",
+      timing: "Morning",
+      description:
+        "Vitamin dose",
+      status: "Inactive",
     },
   ];
 
@@ -38,9 +41,9 @@ function Customers() {
             justifyContent:
               "space-between",
             alignItems: "center",
-            marginBottom: "30px",
             flexWrap: "wrap",
             gap: "20px",
+            marginBottom: "30px",
           }}
         >
           <div>
@@ -50,7 +53,7 @@ function Customers() {
                 marginBottom: "8px",
               }}
             >
-              Customers
+              Dosage
             </h1>
 
             <p
@@ -58,20 +61,32 @@ function Customers() {
                 color: "#64748b",
               }}
             >
-              Manage pharmacy customers
+              Manage medicine dosage
+              details
             </p>
           </div>
 
-          <a
-            href="/add-customer"
+          {/* BUTTONS */}
+
+          <div
             style={{
-              textDecoration: "none",
+              display: "flex",
+              gap: "15px",
+              flexWrap: "wrap",
             }}
           >
-            <button style={addButton}>
-              + Add Customer
+            <button style={importBtn}>
+              Import
             </button>
-          </a>
+
+            <button style={exportBtn}>
+              Export
+            </button>
+
+            <button style={addBtn}>
+              + Add Dosage
+            </button>
+          </div>
         </div>
 
         {/* SEARCH + TIME */}
@@ -80,8 +95,8 @@ function Customers() {
           style={{
             display: "flex",
             gap: "20px",
-            marginBottom: "30px",
             flexWrap: "wrap",
+            marginBottom: "30px",
           }}
         >
           {/* SEARCH */}
@@ -89,7 +104,7 @@ function Customers() {
           <div style={searchContainer}>
             <input
               type="text"
-              placeholder="Search customer..."
+              placeholder="Search dosage..."
               style={searchInput}
             />
           </div>
@@ -120,23 +135,23 @@ function Customers() {
                 }}
               >
                 <th style={head}>
-                  Name
+                  Dosage Name
                 </th>
 
                 <th style={head}>
-                  Age
+                  Frequency
                 </th>
 
                 <th style={head}>
-                  Phone
+                  Timing
                 </th>
 
                 <th style={head}>
-                  Gender
+                  Description
                 </th>
 
                 <th style={head}>
-                  Visit Date
+                  Status
                 </th>
 
                 <th style={head}>
@@ -146,40 +161,56 @@ function Customers() {
             </thead>
 
             <tbody>
-              {customers.map(
-                (
-                  customer,
-                  index
-                ) => (
+              {dosageData.map(
+                (item, index) => (
                   <tr key={index}>
                     <td style={data}>
+                      {item.name}
+                    </td>
+
+                    <td style={data}>
                       {
-                        customer.name
+                        item.frequency
                       }
                     </td>
 
                     <td style={data}>
                       {
-                        customer.age
+                        item.timing
                       }
                     </td>
 
                     <td style={data}>
                       {
-                        customer.phone
+                        item.description
                       }
                     </td>
 
                     <td style={data}>
-                      {
-                        customer.gender
-                      }
-                    </td>
+                      <span
+                        style={{
+                          padding:
+                            "8px 14px",
+                          borderRadius:
+                            "30px",
+                          background:
+                            item.status ===
+                            "Active"
+                              ? "#dcfce7"
+                              : "#fee2e2",
 
-                    <td style={data}>
-                      {
-                        customer.date
-                      }
+                          color:
+                            item.status ===
+                            "Active"
+                              ? "#166534"
+                              : "#991b1b",
+
+                          fontWeight:
+                            "600",
+                        }}
+                      >
+                        {item.status}
+                      </span>
                     </td>
 
                     <td style={data}>
@@ -188,11 +219,12 @@ function Customers() {
                           display:
                             "flex",
                           gap: "10px",
+                          flexWrap: "wrap",
                         }}
                       >
                         <button
                           style={
-                            editButton
+                            editBtn
                           }
                         >
                           Edit
@@ -200,7 +232,7 @@ function Customers() {
 
                         <button
                           style={
-                            deleteButton
+                            deleteBtn
                           }
                         >
                           Delete
@@ -208,10 +240,10 @@ function Customers() {
 
                         <button
                           style={
-                            exportButton
+                            viewBtn
                           }
                         >
-                          Export
+                          View
                         </button>
                       </div>
                     </td>
@@ -275,17 +307,37 @@ const data = {
     "1px solid #e2e8f0",
 };
 
-const addButton = {
+const addBtn = {
   background: "#2563eb",
   color: "white",
   border: "none",
-  padding: "14px 22px",
+  padding: "12px 20px",
   borderRadius: "12px",
   cursor: "pointer",
   fontWeight: "600",
 };
 
-const editButton = {
+const importBtn = {
+  background: "#0f172a",
+  color: "white",
+  border: "none",
+  padding: "12px 20px",
+  borderRadius: "12px",
+  cursor: "pointer",
+  fontWeight: "600",
+};
+
+const exportBtn = {
+  background: "#10b981",
+  color: "white",
+  border: "none",
+  padding: "12px 20px",
+  borderRadius: "12px",
+  cursor: "pointer",
+  fontWeight: "600",
+};
+
+const editBtn = {
   background: "#3b82f6",
   color: "white",
   border: "none",
@@ -294,7 +346,7 @@ const editButton = {
   cursor: "pointer",
 };
 
-const deleteButton = {
+const deleteBtn = {
   background: "#ef4444",
   color: "white",
   border: "none",
@@ -303,8 +355,8 @@ const deleteButton = {
   cursor: "pointer",
 };
 
-const exportButton = {
-  background: "#10b981",
+const viewBtn = {
+  background: "#8b5cf6",
   color: "white",
   border: "none",
   padding: "8px 14px",
@@ -312,4 +364,4 @@ const exportButton = {
   cursor: "pointer",
 };
 
-export default Customers;
+export default Dosage;

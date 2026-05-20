@@ -1,29 +1,50 @@
 import DashboardLayout from "../layouts/DashboardLayout";
 
-function Customers() {
-  const customers = [
+function ActivityLog() {
+  const activities = [
     {
-      name: "Rohan Sharma",
-      age: 24,
-      phone: "9800000001",
-      gender: "Male",
+      user: "Rohan Sharma",
+      action: "Added New Customer",
+      module: "Customers",
       date: "18 May 2026",
+      time: "10:30 AM",
+      status: "Success",
     },
 
     {
-      name: "Aarav Singh",
-      age: 31,
-      phone: "9800000002",
-      gender: "Male",
+      user: "Admin",
+      action: "Updated Medicine",
+      module: "Products",
+      date: "18 May 2026",
+      time: "09:45 AM",
+      status: "Success",
+    },
+
+    {
+      user: "Aarav Singh",
+      action: "Deleted Invoice",
+      module: "Sales",
       date: "17 May 2026",
+      time: "04:20 PM",
+      status: "Warning",
     },
 
     {
-      name: "Priya Patel",
-      age: 27,
-      phone: "9800000003",
-      gender: "Female",
+      user: "Manager",
+      action: "Exported Finance Data",
+      module: "Finance",
+      date: "17 May 2026",
+      time: "01:10 PM",
+      status: "Success",
+    },
+
+    {
+      user: "Reception",
+      action: "Login Attempt Failed",
+      module: "Security",
       date: "16 May 2026",
+      time: "08:15 AM",
+      status: "Failed",
     },
   ];
 
@@ -38,19 +59,19 @@ function Customers() {
             justifyContent:
               "space-between",
             alignItems: "center",
-            marginBottom: "30px",
             flexWrap: "wrap",
             gap: "20px",
+            marginBottom: "30px",
           }}
         >
           <div>
             <h1
               style={{
-                fontSize: "36px",
+                fontSize: "38px",
                 marginBottom: "8px",
               }}
             >
-              Customers
+              Activity Log
             </h1>
 
             <p
@@ -58,20 +79,28 @@ function Customers() {
                 color: "#64748b",
               }}
             >
-              Manage pharmacy customers
+              Monitor all pharmacy
+              system activities
             </p>
           </div>
 
-          <a
-            href="/add-customer"
+          {/* BUTTONS */}
+
+          <div
             style={{
-              textDecoration: "none",
+              display: "flex",
+              gap: "15px",
+              flexWrap: "wrap",
             }}
           >
-            <button style={addButton}>
-              + Add Customer
+            <button style={exportBtn}>
+              Export Logs
             </button>
-          </a>
+
+            <button style={refreshBtn}>
+              Refresh
+            </button>
+          </div>
         </div>
 
         {/* SEARCH + TIME */}
@@ -80,8 +109,8 @@ function Customers() {
           style={{
             display: "flex",
             gap: "20px",
-            marginBottom: "30px",
             flexWrap: "wrap",
+            marginBottom: "30px",
           }}
         >
           {/* SEARCH */}
@@ -89,7 +118,7 @@ function Customers() {
           <div style={searchContainer}>
             <input
               type="text"
-              placeholder="Search customer..."
+              placeholder="Search activity..."
               style={searchInput}
             />
           </div>
@@ -99,6 +128,42 @@ function Customers() {
           <div style={timeBox}>
             🕒{" "}
             {new Date().toLocaleTimeString()}
+          </div>
+        </div>
+
+        {/* STATS */}
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns:
+              "repeat(auto-fit,minmax(220px,1fr))",
+            gap: "20px",
+            marginBottom: "30px",
+          }}
+        >
+          <div style={card}>
+            <h3>Total Logs</h3>
+
+            <h1>1,248</h1>
+          </div>
+
+          <div style={card}>
+            <h3>Successful Actions</h3>
+
+            <h1>1,120</h1>
+          </div>
+
+          <div style={card}>
+            <h3>Warnings</h3>
+
+            <h1>78</h1>
+          </div>
+
+          <div style={card}>
+            <h3>Failed Activities</h3>
+
+            <h1>50</h1>
           </div>
         </div>
 
@@ -120,23 +185,27 @@ function Customers() {
                 }}
               >
                 <th style={head}>
-                  Name
+                  User
                 </th>
 
                 <th style={head}>
-                  Age
+                  Action
                 </th>
 
                 <th style={head}>
-                  Phone
+                  Module
                 </th>
 
                 <th style={head}>
-                  Gender
+                  Date
                 </th>
 
                 <th style={head}>
-                  Visit Date
+                  Time
+                </th>
+
+                <th style={head}>
+                  Status
                 </th>
 
                 <th style={head}>
@@ -146,40 +215,60 @@ function Customers() {
             </thead>
 
             <tbody>
-              {customers.map(
-                (
-                  customer,
-                  index
-                ) => (
+              {activities.map(
+                (item, index) => (
                   <tr key={index}>
                     <td style={data}>
-                      {
-                        customer.name
-                      }
+                      {item.user}
                     </td>
 
                     <td style={data}>
-                      {
-                        customer.age
-                      }
+                      {item.action}
                     </td>
 
                     <td style={data}>
-                      {
-                        customer.phone
-                      }
+                      {item.module}
                     </td>
 
                     <td style={data}>
-                      {
-                        customer.gender
-                      }
+                      {item.date}
                     </td>
 
                     <td style={data}>
-                      {
-                        customer.date
-                      }
+                      {item.time}
+                    </td>
+
+                    <td style={data}>
+                      <span
+                        style={{
+                          padding:
+                            "8px 14px",
+                          borderRadius:
+                            "30px",
+                          fontWeight:
+                            "600",
+
+                          background:
+                            item.status ===
+                            "Success"
+                              ? "#dcfce7"
+                              : item.status ===
+                                "Warning"
+                              ? "#fef3c7"
+                              : "#fee2e2",
+
+                          color:
+                            item.status ===
+                            "Success"
+                              ? "#166534"
+                              : item.status ===
+                                "Warning"
+                              ? "#92400e"
+                              : "#991b1b",
+                        }}
+                      >
+                        {item.status}
+                      </span>
                     </td>
 
                     <td style={data}>
@@ -188,30 +277,23 @@ function Customers() {
                           display:
                             "flex",
                           gap: "10px",
+                          flexWrap: "wrap",
                         }}
                       >
                         <button
                           style={
-                            editButton
+                            viewBtn
                           }
                         >
-                          Edit
+                          View
                         </button>
 
                         <button
                           style={
-                            deleteButton
+                            deleteBtn
                           }
                         >
                           Delete
-                        </button>
-
-                        <button
-                          style={
-                            exportButton
-                          }
-                        >
-                          Export
                         </button>
                       </div>
                     </td>
@@ -264,6 +346,14 @@ const timeBox = {
     "0 4px 15px rgba(0,0,0,0.05)",
 };
 
+const card = {
+  background: "white",
+  padding: "25px",
+  borderRadius: "20px",
+  boxShadow:
+    "0 4px 15px rgba(0,0,0,0.05)",
+};
+
 const head = {
   padding: "18px",
   textAlign: "left",
@@ -275,18 +365,28 @@ const data = {
     "1px solid #e2e8f0",
 };
 
-const addButton = {
-  background: "#2563eb",
+const exportBtn = {
+  background: "#10b981",
   color: "white",
   border: "none",
-  padding: "14px 22px",
+  padding: "12px 20px",
   borderRadius: "12px",
   cursor: "pointer",
   fontWeight: "600",
 };
 
-const editButton = {
-  background: "#3b82f6",
+const refreshBtn = {
+  background: "#2563eb",
+  color: "white",
+  border: "none",
+  padding: "12px 20px",
+  borderRadius: "12px",
+  cursor: "pointer",
+  fontWeight: "600",
+};
+
+const viewBtn = {
+  background: "#8b5cf6",
   color: "white",
   border: "none",
   padding: "8px 14px",
@@ -294,7 +394,7 @@ const editButton = {
   cursor: "pointer",
 };
 
-const deleteButton = {
+const deleteBtn = {
   background: "#ef4444",
   color: "white",
   border: "none",
@@ -303,13 +403,4 @@ const deleteButton = {
   cursor: "pointer",
 };
 
-const exportButton = {
-  background: "#10b981",
-  color: "white",
-  border: "none",
-  padding: "8px 14px",
-  borderRadius: "8px",
-  cursor: "pointer",
-};
-
-export default Customers;
+export default ActivityLog;
